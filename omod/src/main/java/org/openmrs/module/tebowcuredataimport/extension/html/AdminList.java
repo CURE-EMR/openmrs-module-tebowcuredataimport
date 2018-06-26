@@ -17,7 +17,8 @@ import org.openmrs.module.web.extension.AdministrationSectionExt;
 
 /**
  * This class defines the links that will appear on the administration page under the
- * "tebowcuredataimport.title" heading. This extension is enabled by defining (uncommenting) it in the config.xml file.
+ * "tebowcuredataimport.title" heading. This extension is enabled by defining (uncommenting) it in
+ * the config.xml file.
  */
 public class AdminList extends AdministrationSectionExt {
 	
@@ -41,9 +42,13 @@ public class AdminList extends AdministrationSectionExt {
 	public Map<String, String> getLinks() {
 		
 		Map<String, String> map = new HashMap<String, String>();
-		
 		map.put("module/tebowcuredataimport/tebowcuredataimport.form", "tebowcuredataimport.title");
-		
+		map.put("module/tebowcuredataimport/addDates.form", "tebowcuredataimport.adddate");
+		map.put("module/tebowcuredataimport/addIds.form", "tebowcuredataimport.addIds");
+		map.put("module/tebowcuredataimport/addPersonAttributes.form", "tebowcuredataimport.addPersonAttributes");		
+		map.put("module/tebowcuredataimport/saveAllPatients.form", "tebowcuredataimport.saveAllPatients");
+		map.put("module/tebowcuredataimport/saveAllNullDoBs.form", "tebowcuredataimport.saveAllNullDoBs");
+				
 		return map;
 	}
 	
