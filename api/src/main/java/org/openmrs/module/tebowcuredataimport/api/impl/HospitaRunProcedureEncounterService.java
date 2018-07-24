@@ -11,7 +11,6 @@ import org.openmrs.api.ConceptService;
 import org.openmrs.api.context.Context;
 import org.openmrs.module.tebowcuredataimport.api.dao.HospitalRunProcedureEncounterDAO;
 import org.openmrs.module.tebowcuredataimport.domain.HospitaRunProcedureEncounter;
-import org.openmrs.module.tebowcuredataimport.domain.HospitaRunVisitInformationEncounter;
 import org.openmrs.module.tebowcuredataimport.utils.HospitalRunObservationUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -71,96 +70,34 @@ public class HospitaRunProcedureEncounterService {
 					HospitalRunObservationUtil.createObs(cs.getConcept("Anesthesia Type"), anesthesiaType, e);
 					
 					String anesthesiologist = he.getAnesthesiologist();
-					HospitalRunObservationUtil.createObs(cs.getConcept("Anesthesia Type"), anesthesiologist, e);
+					HospitalRunObservationUtil.createObs(cs.getConcept("Anesthesiologist"), anesthesiologist, e);
 					
 					String assistant = he.getAssistant();
-					HospitalRunObservationUtil.createObs(cs.getConcept("Anesthesia Type"), assistant, e);
+					HospitalRunObservationUtil.createObs(cs.getConcept("Assistant"), assistant, e);
 					
 					String description = he.getDescription();
-					HospitalRunObservationUtil.createObs(cs.getConcept("Anesthesia Type"), description, e);
+					HospitalRunObservationUtil.createObs(cs.getConcept("Procedure Description"), description, e);
 					
 					String cptCode = he.getCptCode();
-					HospitalRunObservationUtil.createObs(cs.getConcept("Anesthesia Type"), cptCode, e);
+					HospitalRunObservationUtil.createObs(cs.getConcept("CPT Code"), cptCode, e);
 					
 					String location = he.getLocation();
-					HospitalRunObservationUtil.createObs(cs.getConcept("Anesthesia Type"), location, e);
+					HospitalRunObservationUtil.createObs(cs.getConcept("Procedure Location"), location, e);
 					
 					String notes = he.getNotes();
-					HospitalRunObservationUtil.createObs(cs.getConcept("Anesthesia Type"), notes, e);
+					HospitalRunObservationUtil.createObs(cs.getConcept("Procedure Notes, Procedure Note"), notes, e);
 					
 					String physician = he.getPhysician();
-					HospitalRunObservationUtil.createObs(cs.getConcept("Anesthesia Type"), physician, e);
+					HospitalRunObservationUtil.createObs(cs.getConcept("Physician"), physician, e);
 					
 					String procedureDate = he.getProcedureDate();
-					HospitalRunObservationUtil.createObs(cs.getConcept("Anesthesia Type"), procedureDate, e);
+					HospitalRunObservationUtil.createObs(cs.getConcept("Procedure Date"), procedureDate, e);
 					
 					String timeStarted = he.getTimeStarted();
-					HospitalRunObservationUtil.createObs(cs.getConcept("Anesthesia Type"), timeStarted, e);
+					HospitalRunObservationUtil.createObs(cs.getConcept("Time Started"), timeStarted, e);
 					
 					String timeEnded = he.getTimeEnded();
-					HospitalRunObservationUtil.createObs(cs.getConcept("Anesthesia Type"), timeEnded, e);
-					
-					Encounter encounter = Context.getEncounterService().saveEncounter(e);
-					setEncounterObsForm(encounter, cs.getConcept(formConcept));
-					
-					log.error(++i + ".===Turangije encounter " + e.getId());
-				}
-			}
-			
-		}
-		catch (Exception e) {
-			log.error("There was an error building the encounter", e);
-		}
-		
-	}
-	
-	@Transactional
-	public void createPatientNoteEncounters(String formConcept) {
-		ConceptService cs = Context.getService(ConceptService.class);
-		List<Obs> obs = Context.getObsService().getObservationsByPersonAndConcept(null, cs.getConcept("Patient Note Encounter Tag"));
-		int i = 0;
-		
-		try {
-			
-			for (Obs obs2 : obs) {
-				
-				if (obs2.getValueText() != null && obs2.getValueText() != "") {
-					Encounter e = obs2.getEncounter();
-					
-					HospitaRunProcedureEncounter he = getProcedureEncounterByVisitUUID(obs2.getValueText());
-					
-					String anesthesiaType = he.getAnesthesiaType();
-					HospitalRunObservationUtil.createObs(cs.getConcept("Anesthesia Type"), anesthesiaType, e);
-					
-					String anesthesiologist = he.getAnesthesiologist();
-					HospitalRunObservationUtil.createObs(cs.getConcept("Anesthesia Type"), anesthesiologist, e);
-					
-					String assistant = he.getAssistant();
-					HospitalRunObservationUtil.createObs(cs.getConcept("Anesthesia Type"), assistant, e);
-					
-					String description = he.getDescription();
-					HospitalRunObservationUtil.createObs(cs.getConcept("Anesthesia Type"), description, e);
-					
-					String cptCode = he.getCptCode();
-					HospitalRunObservationUtil.createObs(cs.getConcept("Anesthesia Type"), cptCode, e);
-					
-					String location = he.getLocation();
-					HospitalRunObservationUtil.createObs(cs.getConcept("Anesthesia Type"), location, e);
-					
-					String notes = he.getNotes();
-					HospitalRunObservationUtil.createObs(cs.getConcept("Anesthesia Type"), notes, e);
-					
-					String physician = he.getPhysician();
-					HospitalRunObservationUtil.createObs(cs.getConcept("Anesthesia Type"), physician, e);
-					
-					String procedureDate = he.getProcedureDate();
-					HospitalRunObservationUtil.createObs(cs.getConcept("Anesthesia Type"), procedureDate, e);
-					
-					String timeStarted = he.getTimeStarted();
-					HospitalRunObservationUtil.createObs(cs.getConcept("Anesthesia Type"), timeStarted, e);
-					
-					String timeEnded = he.getTimeEnded();
-					HospitalRunObservationUtil.createObs(cs.getConcept("Anesthesia Type"), timeEnded, e);
+					HospitalRunObservationUtil.createObs(cs.getConcept("Time Ended"), timeEnded, e);
 					
 					Encounter encounter = Context.getEncounterService().saveEncounter(e);
 					setEncounterObsForm(encounter, cs.getConcept(formConcept));
