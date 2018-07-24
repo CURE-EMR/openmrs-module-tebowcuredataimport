@@ -9,11 +9,14 @@
  */
 package org.openmrs.module.tebowcuredataimport.extension.html;
 
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.openmrs.api.APIException;
 import org.openmrs.module.Extension;
 import org.openmrs.module.web.extension.AdministrationSectionExt;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 /**
  * This class defines the links that will appear on the administration page under the
@@ -45,10 +48,14 @@ public class AdminList extends AdministrationSectionExt {
 		map.put("module/tebowcuredataimport/tebowcuredataimport.form", "tebowcuredataimport.title");
 		map.put("module/tebowcuredataimport/addDates.form", "tebowcuredataimport.adddate");
 		map.put("module/tebowcuredataimport/addIds.form", "tebowcuredataimport.addIds");
-		map.put("module/tebowcuredataimport/addPersonAttributes.form", "tebowcuredataimport.addPersonAttributes");		
+		map.put("module/tebowcuredataimport/addPersonAttributes.form", "tebowcuredataimport.addPersonAttributes");
 		map.put("module/tebowcuredataimport/saveAllPatients.form", "tebowcuredataimport.saveAllPatients");
 		map.put("module/tebowcuredataimport/saveAllNullDoBs.form", "tebowcuredataimport.saveAllNullDoBs");
-				
+		
+		map.put("module/tebowcuredataimport/createProcedureEncounters.form", "tebowcuredataimport.createProcedureEncounters");
+		map.put("module/tebowcuredataimport/createVisitInformationEncounters.form", "tebowcuredataimport.createVisitInformationEncounters");
+		map.put("module/tebowcuredataimport/createPatientNoteEncounters.form", "tebowcuredataimport.createPatientNoteEncounters");
+			
 		return map;
 	}
 	

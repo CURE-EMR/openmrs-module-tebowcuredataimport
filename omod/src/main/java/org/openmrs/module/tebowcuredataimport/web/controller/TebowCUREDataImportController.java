@@ -12,16 +12,17 @@ package org.openmrs.module.tebowcuredataimport.web.controller;
 import java.io.IOException;
 import java.util.List;
 
-import javax.servlet.http.HttpSession;
-
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.openmrs.User;
+import org.openmrs.api.APIException;
 import org.openmrs.api.UserService;
 import org.openmrs.module.tebowcuredataimport.api.csv.reader.SimpleExcelReader;
+import org.openmrs.module.tebowcuredataimport.api.impl.HospitaRunProcedureEncounterService;
+import org.openmrs.module.tebowcuredataimport.api.impl.HospitaRunVisitInformationEncounterService;
+import org.openmrs.module.tebowcuredataimport.api.impl.HospitalRunPatientNoteEncounterService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -36,12 +37,21 @@ public class TebowCUREDataImportController {
 
 	/** Logger for this class and subclasses */
 	protected final Log log = LogFactory.getLog(getClass());
+	
+	@Autowired
+	private HospitaRunProcedureEncounterService hospitaRunProcedureEncounterService;
+	
+	@Autowired
+	private HospitaRunVisitInformationEncounterService hospitaRunVisitInformationEncounterService;
+	
+	@Autowired
+	private HospitalRunPatientNoteEncounterService hospitalRunPatientNoteEncounterService;
 
 	@Autowired
 	UserService userService;
 
 	/** Success form view name */
-	private final String VIEW = "/module/${rootArtifactid}/${rootArtifactid}";
+	private final String VIEW = "/module/tebowcuredataimport/tebowcuredataimport";
 
 	/**
 	 * Initially called after the getUsers method to get the landing form name
@@ -52,22 +62,40 @@ public class TebowCUREDataImportController {
 	public String onGet() {
 		return VIEW;
 	}
+	
+	@RequestMapping("/module/tebowcuredataimport/createProcedureEncounters")
+	public String createOrthopaedicFollowupObs() throws APIException, IOException {
+		hospitaRunProcedureEncounterService.createProcedureEncounters("Procedure Form");
+		return VIEW;
+	}
+	
+	@RequestMapping("/module/tebowcuredataimport/createVisitInformationEncounters")
+	public String createVisitInformationEncounters() throws APIException, IOException {
+		hospitaRunVisitInformationEncounterService.createVisitInformationEncounters("Visit Information");
+		return VIEW;
+	}
+	
+	@RequestMapping("/module/tebowcuredataimport/createPatientNoteEncounters")
+	public String createPatientNoteEncounters() throws APIException, IOException {
+		hospitalRunPatientNoteEncounterService.createPatientNoteEncounters("Patient Notes");
+		return VIEW;
+	}
 
-	@RequestMapping("/module/cchudataimport/addDates")
+	@RequestMapping("/module/tebowcuredataimport/addDates")
 	public String addDate() throws IOException {
 		SimpleExcelReader r = new SimpleExcelReader();
 		r.addDateofBirth();
 		return VIEW;
 	}
 
-	@RequestMapping("/module/cchudataimport/addIds")
+	@RequestMapping("/module/tebowcuredataimport/addIds")
 	public String addIds() throws IOException {
 		SimpleExcelReader r = new SimpleExcelReader();
 		r.addIds();
 		return VIEW;
 	}
 
-	@RequestMapping("/module/cchudataimport/addPersonAttributes")
+	@RequestMapping("/module/tebowcuredataimport/addPersonAttributes")
 	public String addPersonAttributes() throws IOException {
 		log.error("=======================Ndi muri controller");
 		SimpleExcelReader r = new SimpleExcelReader();
@@ -75,14 +103,14 @@ public class TebowCUREDataImportController {
 		return VIEW;
 	}
 
-	@RequestMapping("/module/cchudataimport/saveAllPatients")
+	@RequestMapping("/module/tebowcuredataimport/saveAllPatients")
 	public String saveAllPatients() throws IOException {
 		SimpleExcelReader r = new SimpleExcelReader();
 		r.saveAllPatients();
 		return VIEW;
 	}
 
-	@RequestMapping("/module/cchudataimport/saveAllNullDoBs")
+	@RequestMapping("/module/tebowcuredataimport/saveAllNullDoBs")
 	public String saveAllNullDoBs() throws IOException {
 		SimpleExcelReader r = new SimpleExcelReader();
 		r.saveAllNullDoBs();
