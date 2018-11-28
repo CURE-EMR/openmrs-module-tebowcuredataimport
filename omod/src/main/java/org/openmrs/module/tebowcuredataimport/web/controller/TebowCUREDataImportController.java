@@ -31,19 +31,18 @@ import org.springframework.web.bind.annotation.RequestMethod;
  * This class configured as controller using annotation and mapped with the URL
  * of 'module/${rootArtifactid}/${rootArtifactid}Link.form'.
  */
-@Controller("${rootrootArtifactid}.TebowCUREDataImportController")
-@RequestMapping(value = "module/${rootArtifactid}/${rootArtifactid}.form")
+@Controller
 public class TebowCUREDataImportController {
 
 	/** Logger for this class and subclasses */
 	protected final Log log = LogFactory.getLog(getClass());
-	
+
 	@Autowired
 	private HospitaRunProcedureEncounterService hospitaRunProcedureEncounterService;
-	
+
 	@Autowired
 	private HospitaRunVisitInformationEncounterService hospitaRunVisitInformationEncounterService;
-	
+
 	@Autowired
 	private HospitalRunPatientNoteEncounterService hospitalRunPatientNoteEncounterService;
 
@@ -62,19 +61,19 @@ public class TebowCUREDataImportController {
 	public String onGet() {
 		return VIEW;
 	}
-	
+
 	@RequestMapping("/module/tebowcuredataimport/createProcedureEncounters")
 	public String createOrthopaedicFollowupObs() throws APIException, IOException {
 		hospitaRunProcedureEncounterService.createProcedureEncounters("Procedure Form");
 		return VIEW;
 	}
-	
+
 	@RequestMapping("/module/tebowcuredataimport/createVisitInformationEncounters")
 	public String createVisitInformationEncounters() throws APIException, IOException {
 		hospitaRunVisitInformationEncounterService.createVisitInformationEncounters("Visit Information");
 		return VIEW;
 	}
-	
+
 	@RequestMapping("/module/tebowcuredataimport/createPatientNoteEncounters")
 	public String createPatientNoteEncounters() throws APIException, IOException {
 		hospitalRunPatientNoteEncounterService.createPatientNoteEncounters("Patient Notes");
