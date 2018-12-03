@@ -16,7 +16,7 @@ import org.apache.commons.logging.LogFactory;
  */
 public class CSVReader {
 	
-	/* Logger for this class and subclasses*/
+	/* Logger for this class and subclasses */
 	protected final Log log = LogFactory.getLog(getClass());
 	
 	public CSVReader() {

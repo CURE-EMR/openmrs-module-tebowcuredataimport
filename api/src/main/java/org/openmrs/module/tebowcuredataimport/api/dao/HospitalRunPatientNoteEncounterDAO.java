@@ -16,7 +16,7 @@ import org.springframework.stereotype.Repository;
 @Repository
 public class HospitalRunPatientNoteEncounterDAO {
 	
-	/*Logger for this class and subclasses*/
+	/* Logger for this class and subclasses */
 	protected final Log log = LogFactory.getLog(getClass());
 	
 	@Autowired

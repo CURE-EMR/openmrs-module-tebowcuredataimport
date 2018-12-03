@@ -11,10 +11,10 @@ import org.hibernate.annotations.Proxy;
 
 /**
  * This class represents observation objects as they were stored in the HospitalRun system that was
- * used by Tebow CURE Hospital. The aim is to export the data from the HospitalRun instance into XLSX files
- * and with this class, read/load the files into a MysQL database table. We'll then source the table
- * into the OpenMRS database and leverage Hibernate and the OperMRS API to load instances of this
- * class and create encounters and observations in OpernMRS database.
+ * used by Tebow CURE Hospital. The aim is to export the data from the HospitalRun instance into
+ * XLSX files and with this class, read/load the files into a MysQL database table. We'll then
+ * source the table into the OpenMRS database and leverage Hibernate and the OperMRS API to load
+ * instances of this class and create encounters and observations in OpernMRS database.
  * 
  * @author rubailly
  */

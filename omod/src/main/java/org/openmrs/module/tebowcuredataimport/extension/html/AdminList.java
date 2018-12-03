@@ -50,10 +50,8 @@ public class AdminList extends AdministrationSectionExt {
 		map.put("module/tebowcuredataimport/saveAllNullDoBs.form", "tebowcuredataimport.saveAllNullDoBs");
 		
 		map.put("module/tebowcuredataimport/createProcedureEncounters.form", "tebowcuredataimport.createProcedureEncounters");
-		map.put("module/tebowcuredataimport/createVisitInformationEncounters.form",
-		    "tebowcuredataimport.createVisitInformationEncounters");
-		map.put("module/tebowcuredataimport/createPatientNoteEncounters.form",
-		    "tebowcuredataimport.createPatientNoteEncounters");
+		map.put("module/tebowcuredataimport/createVisitInformationEncounters.form", "tebowcuredataimport.createVisitInformationEncounters");
+		map.put("module/tebowcuredataimport/createPatientNoteEncounters.form", "tebowcuredataimport.createPatientNoteEncounters");
 		
 		return map;
 	}

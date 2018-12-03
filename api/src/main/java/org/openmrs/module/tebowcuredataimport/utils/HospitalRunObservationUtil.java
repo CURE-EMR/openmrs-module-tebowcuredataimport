@@ -14,7 +14,7 @@ import org.openmrs.api.context.Context;
 
 public class HospitalRunObservationUtil {
 	
-	/* Logger for this class and subclasses*/
+	/* Logger for this class and subclasses */
 	protected final static Log log = LogFactory.getLog(HospitalRunObservationUtil.class);
 	
 	/**
