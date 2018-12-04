@@ -96,7 +96,6 @@ public class TebowCUREDataImportController {
 	
 	@RequestMapping("/module/tebowcuredataimport/addPersonAttributes")
 	public String addPersonAttributes() throws IOException {
-		log.error("=======================Ndi muri controller");
 		SimpleExcelReader r = new SimpleExcelReader();
 		r.preparePersonAttributesImport();
 		return VIEW;

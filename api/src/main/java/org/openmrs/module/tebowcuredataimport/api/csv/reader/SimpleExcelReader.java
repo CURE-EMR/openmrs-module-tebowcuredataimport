@@ -41,7 +41,6 @@ public class SimpleExcelReader {
 	
 	public void preparePersonAttributesImport() throws APIException, IOException {
 		String mapping = Context.getAdministrationService().getGlobalProperty("tebowcuredataimport.fileNamePersonAttributeMap");
-		log.error("===================Ndi muri prepare kandi global property nayibonye. Ni: " + mapping);
 		String[] values = mapping.split("\\|");
 		for (String s : values) {
 			if (s.indexOf(":") > 0) {
@@ -92,6 +91,7 @@ public class SimpleExcelReader {
 			}
 			
 		}
+		workbook.close();
 		inputStream.close();
 	}
 	
@@ -104,12 +104,12 @@ public class SimpleExcelReader {
 		Iterator<Row> iterator = firstSheet.iterator();
 		
 		PatientService ps = Context.getPatientService();
-		PatientIdentifierType it = ps.getPatientIdentifierTypeByName("Identification Number");
+		PatientIdentifierType it = ps.getPatientIdentifierTypeByName("Old Identification Number");
 		List<PatientIdentifierType> oldIds = new ArrayList<PatientIdentifierType>();
 		oldIds.add(it);
 		
 		List<PatientIdentifier> identifiers = Context.getPatientService().getPatientIdentifiers(null, oldIds, null, null, null); // Do we really have to load all patients!!
-		log.error("================================Ndi muri addPersonAttributes kandi indentifiers nazibonye. Nabonye " + identifiers.size());
+		
 		while (iterator.hasNext()) {
 			try {
 				Row nextRow = iterator.next();
@@ -133,19 +133,24 @@ public class SimpleExcelReader {
 					for (PatientIdentifier patientIdentifier : identifiers) {
 						if (patientIdentifier.getIdentifier().equalsIgnoreCase(patientUUID)) {
 							Patient p = patientIdentifier.getPatient();
+							
+							if (personAttributeValue.length() > 49) {
+								personAttributeValue = personAttributeValue.substring(0, 48);
+							}
+							
 							PersonAttribute pa = new PersonAttribute(personAttributeType, personAttributeValue);
 							p.getPerson().addAttribute(pa);
-							log.error("======================================= " + patientUUID + "=============" + personAttributeType.getName());
+							log.error("Adding person attribute " + personAttributeType.getName() + "for patient with Old Id: " + patientUUID);
 							Context.getPersonService().savePerson(p);
 						}
 					}
 				}
 			}
 			catch (Exception e) {
-				log.error("Habaye ikibazo=======================" + e);
+				log.error("There was an error adding the person attribute(s)" + e);
 			}
-			log.error("Ndacyasomaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa=======================");
 		}
+		workbook.close();
 		inputStream.close();
 	}
 	
@@ -186,6 +191,7 @@ public class SimpleExcelReader {
 			catch (Exception e) {}
 			
 		}
+		workbook.close();
 		inputStream.close();
 	}
 	
