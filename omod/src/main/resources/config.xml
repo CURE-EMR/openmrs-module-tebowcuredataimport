@@ -47,7 +47,7 @@
 	
 	<globalProperty>
 		<property>tebowcuredataimport.fileNamePersonAttributeMap</property>
-		<defaultValue>careTaker1:careTaker1|careTaker2:careTaker2|phoneContact:phoneContact|referringCo:ReferringCo</defaultValue>
+		<defaultValue>religion:religion|phone:phone</defaultValue>
 		<description>
 			Mappings between file names and person attribute types from which person attributes should be created
 		</description>

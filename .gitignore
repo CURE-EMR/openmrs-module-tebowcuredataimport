@@ -16,6 +16,7 @@ hs_err_pid*
 .idea
 .project
 .settings/*
+target/*
 api/.classpath
 api/.project
 api/.settings/*
@@ -25,3 +26,52 @@ omod/.project
 omod/.settings/*
 omod/target/*
 /.settings
+
+# maven ignores
+target/
+
+# IntelliJ ignores
+*.iml
+*.ipr
+*.iws
+.idea/
+api/*.iml
+omod/*.iml
+
+# Netbeans ignores
+nbproject/private/
+build/
+nbbuild/
+dist/
+nbdist/
+nbactions.xml
+nb-configuration.xml
+
+# Eclipse ignores
+*.pydevproject
+.project
+.metadata
+bin/**
+tmp/**
+tmp/**/*
+*.tmp
+*.bak
+*.swp
+*~.nib
+local.properties
+.classpath
+.settings/
+.loadpath
+
+# External tool builders
+.externalToolBuilders/
+
+# Locally stored "Eclipse launch configurations"
+*.launch
+
+# CDT-specific
+.cproject
+
+# PDT-specific
+.buildpath
+
